@@ -40,6 +40,11 @@ export interface TeacherProfile {
   specialization?: string;
   bio?: string;
   tagline?: string;
+  philosophy?: string;
+  qualifications?: string[];
+  traits?: string[];
+  targetAudience?: string[];
+  trainingTracks?: string[];
   language: string;
   direction: Direction;
   photo?: ImageAsset | null;
@@ -312,8 +317,13 @@ export function validateTeacherData(value: unknown): ValidationResult<TeacherPro
   validateString(issues, value.name, 'name', { allowEmpty: true });
   validateString(issues, value.language, 'language');
   if (!['rtl', 'ltr'].includes(String(value.direction))) error(issues, 'direction', 'direction-enum', 'القيمة المسموحة rtl أو ltr.');
-  for (const field of ['brandName', 'professionalTitle', 'specialization', 'bio', 'tagline'] as const) {
+  for (const field of ['brandName', 'professionalTitle', 'specialization', 'bio', 'tagline', 'philosophy'] as const) {
     validateOptionalString(issues, value[field], field);
+  }
+  for (const arrayField of ['qualifications', 'traits', 'targetAudience', 'trainingTracks'] as const) {
+    if (value[arrayField] !== undefined && validateArray(issues, value[arrayField], arrayField)) {
+      (value[arrayField] as unknown[]).forEach((item, index) => validateString(issues, item, `${arrayField}[${index}]`));
+    }
   }
   if (value.photo !== undefined && value.photo !== null) validateImage(issues, value.photo, 'photo');
   if (value.logo !== undefined && value.logo !== null) validateImage(issues, value.logo, 'logo');

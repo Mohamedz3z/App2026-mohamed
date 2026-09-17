@@ -1,5 +1,9 @@
 {
-  "name": "Teacher Educational App Clean Base v2",
-  "description": "قالب تعليمي عام قابل لإعادة الاستخدام، يشمل المناهج، بصمة التعلم، السبورة التعليمية، ومحتوى الدروس المنفصل.",
-  "version": "2.0.0"
+  "name": "أثر للتدريب الإبداعي",
+  "description": "منصة تدريبية وتعليمية للمدرب محمد سيف الدين — مؤسس أثر للتدريب الإبداعي، متخصصة في التدريب والتدريس الإبداعي بالذكاء الاصطناعي.",
+  "version": "2.0.0",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

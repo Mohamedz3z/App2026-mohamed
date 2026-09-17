@@ -54,6 +54,101 @@ export function HomePage() {
         </div>
       </section>
 
+      <section aria-labelledby="trainer-identity-title" className="trainer-identity-section">
+        <div className="container">
+          <div className="trainer-identity-head">
+            <p className="section-kicker"><Icon name="sparkle" /> {teacher.tagline || 'نبتكر لنترك أثرًا'}</p>
+            <h2 id="trainer-identity-title">الهوية المهنية وفلسفة التدريب</h2>
+            <p className="trainer-identity-subtitle">
+              تجربة تدريبية وتعليمية تجمع بين الأصالة المنهجية، والابتكار العملي، وتطبيقات الذكاء الاصطناعي الواعية.
+            </p>
+          </div>
+
+          {teacher.traits && teacher.traits.length > 0 && (
+            <div className="trainer-traits-row" aria-label="سمات تجربة التدريب">
+              {teacher.traits.map((trait) => (
+                <div className="trainer-trait-badge" key={trait}>
+                  <Icon name="sparkle" />
+                  <span>{trait}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="trainer-cards-grid">
+            <article className="trainer-info-card">
+              <div className="card-header">
+                <span className="card-icon"><Icon name="book" /></span>
+                <h3>المؤهلات والمسيرة العلمية</h3>
+              </div>
+              {teacher.qualifications && (
+                <ul className="credentials-list">
+                  {teacher.qualifications.map((item, idx) => (
+                    <li key={idx}>
+                      <span className="bullet-dot" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+
+            <article className="trainer-info-card trainer-info-card--featured">
+              <div className="card-header">
+                <span className="card-icon"><Icon name="brain" /></span>
+                <h3>فلسفة التدريب وتميز التجربة</h3>
+              </div>
+              <blockquote className="philosophy-quote">
+                «{teacher.philosophy || teacher.bio}»
+              </blockquote>
+              <div className="method-highlights">
+                <div className="method-pill">
+                  <b>الأسلوب التدريبي</b>
+                  <span>إبداعي · تفاعلي · تحفيزي · مبسط وعملي</span>
+                </div>
+                <div className="method-pill">
+                  <b>الذكاء الاصطناعي</b>
+                  <span>توظيف تربوي واعٍ يخدم المتعلم دون إبهار سطحي</span>
+                </div>
+              </div>
+            </article>
+
+            <article className="trainer-info-card">
+              <div className="card-header">
+                <span className="card-icon"><Icon name="layers" /></span>
+                <h3>الفئات المستهدفة والمسارات</h3>
+              </div>
+              <div className="audience-group">
+                <h4 className="sub-title">الجمهور المستهدف:</h4>
+                <div className="tags-cloud">
+                  {(teacher.targetAudience ?? [
+                    'المدربون ومصممو البرامج',
+                    'المعلمون والمشرفون',
+                    'القيادات التعليمية',
+                    'أعضاء هيئة التدريس والباحثون'
+                  ]).map((aud, idx) => (
+                    <span className="tag-chip" key={idx}>{aud}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="tracks-group">
+                <h4 className="sub-title">أبرز مسارات التدريب:</h4>
+                <div className="tags-cloud">
+                  {(teacher.trainingTracks ?? [
+                    'التدريب الإبداعي بالذكاء الاصطناعي',
+                    'التدريس الإبداعي',
+                    'تدريب المدربين TOT',
+                    'تصميم الحقائب التدريبية'
+                  ]).map((track, idx) => (
+                    <span className="tag-chip tag-chip--track" key={idx}>{track}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section aria-labelledby="learning-profile-home-title" className="learning-profile-home-section">
         <div className="container">
           <div className="feature-entry-card feature-entry-card--profile">
